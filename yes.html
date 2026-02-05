@@ -15,11 +15,12 @@
             background-size: contain;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* start higher so we can push box down manually */
             min-height: 100vh;
             margin: 0;
             text-align: center;
-            overflow-y: auto; /* allow scroll on mobile */
+            overflow-y: auto;
+            padding-top: 140px; /* moves everything down without breaking mobile */
         }
 
         h1 {
@@ -36,19 +37,21 @@
             background: rgba(255, 255, 255, 0.7);
             padding: 20px;
             border-radius: 15px;
-            margin: 40px 10px;
             width: 90%;
             max-width: 400px;
+            margin-bottom: 40px;
             z-index: 5;
         }
 
         @media (max-width: 500px) {
+            body {
+                padding-top: 110px; /* slightly less on small screens */
+            }
             h1 { font-size: 28px; }
             p { font-size: 18px; }
-            .text-box { margin: 20px 10px; }
         }
 
-        /* Confetti rising from bottom */
+        /* Confetti rising */
         @keyframes confettiRise {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
@@ -77,7 +80,7 @@
 </div>
 
 <script>
-/* Confetti (only first few seconds) */
+/* Confetti (first few seconds only) */
 let confettiInterval;
 
 function createConfetti() {
@@ -85,7 +88,7 @@ function createConfetti() {
     confetti.innerHTML = "🎉";
     confetti.style.position = "fixed";
     confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.top = "100vh";              // start at bottom
+    confetti.style.top = "100vh";
     confetti.style.fontSize = (20 + Math.random() * 20) + "px";
     confetti.style.animation = "confettiRise 3s linear forwards";
     confetti.style.pointerEvents = "none";
@@ -96,7 +99,7 @@ function createConfetti() {
 
 function startConfettiBurst() {
     confettiInterval = setInterval(createConfetti, 150);
-    setTimeout(() => clearInterval(confettiInterval), 3000); // stop after 3s
+    setTimeout(() => clearInterval(confettiInterval), 3000);
 }
 
 /* Hearts */
