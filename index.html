@@ -63,12 +63,25 @@
         #noBtn {
             position: relative;
         }
+
+        /* Top‑right GIF */
+        .corner-gif {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 120px; /* adjust size if needed */
+            height: auto;
+            z-index: 20;
+        }
     </style>
 </head>
 <body>
 
+<!-- Your GIF in the corner -->
+<img src="yourgif.gif" class="corner-gif">
+
 <div class="card">
-    <h1>Orlagh will you be my Valentine?</h1>
+    <h1>Orlagh, will you be my Valentine?</h1>
     <button onclick="yes()">Yes ❤️</button>
     <button id="noBtn" onmouseover="runAway()">No 😢</button>
 </div>
